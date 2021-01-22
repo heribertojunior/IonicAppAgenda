@@ -40,11 +40,22 @@ export class LoginPage implements OnInit {
     return <FormControl>this.authForm.get('password');
   }
 
+  get name(): FormControl {
+    return <FormControl>this.authForm.get('name');
+  }
+
   changeAuthAction(): void{
     this.configs.isSignIn = !this.configs.isSignIn;
+    const{ isSignIn }= this.configs;
+    this.configs.action = isSignIn ? 'Login' : 'Sign Up';
+    this.configs.actionChange = isSignIn ? 'Create account' : 'Ja tenho uma conta';
+    !isSignIn
+       ? this.authForm.addControl('name', this.nameControl)
+       : this.authForm.removeControl('name');
   }
   onSubmit(): void {
     console.log('AuthForm: ',  this.authForm.value);
+    alert(this.authForm.value.email+" , "+this.authForm.value.password);
   }
 
 }

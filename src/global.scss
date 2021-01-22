@@ -27,5 +27,38 @@
 
 
 .icon-7em{
-  font-size: 7em;
+ margin: auto;
+  height: 7em;
+  width: 7em;
+}
+
+.formg{
+  margin-left: 10% ;
+  margin-right: 10%;
+  margin-top: 3em;
+
+   ion-item {
+
+     margin-bottom: 4%;
+    border-radius: 30px;
+     border: solid 1px red;
+     border-radius: 30px;
+      height: 2.5em;
+
+   }
+  ion-button{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+}
+
+.changedAction{
+  color: rgb(5, 5, 5);
+}
+
+ion-content.background {
+  --background: url(assets\images\bkgl4.jpg) 0 0/100% 100% no-repeat;
 }

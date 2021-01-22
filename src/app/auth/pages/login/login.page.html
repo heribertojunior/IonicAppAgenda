@@ -1,33 +1,39 @@
-<ion-content color="light" >
+<ion-content paddin class="background">
   <h1 class="ion-text-center">
-    <ion-icon name="rocket" color="primary" class="icon-7em" ></ion-icon>
+    <ion-img class="icon-7em" src="assets\images\logo.jpg"></ion-img>
   </h1>
- <form [formGroup]="authForm" (submit)="onSubmit()">
+ <form [formGroup]="authForm" (submit)="onSubmit()" class="formg">
+
+   <ng-container *ngIf="!configs.isSignIn">
+      <ion-item>
+
+      <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+      <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">Obrigatorio</ion-note>
+      <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">muito curto
+      </ion-note>
+
+      </ion-item>
+   </ng-container>
+
     <ion-item>
-      <ion-icon name="mail" color="primary" slot="start"></ion-icon>
-      <ion-input type="email" placeholder="Email" inputmode="email" autofocus="true" formControlName="email"></ion-input>
+      <ion-input type="email" placeholder="Email" inputmode="email"  formControlName="email"></ion-input>
 
       <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">Obrigatorio</ion-note>
       <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">Email invalido</ion-note>
 
     </ion-item>
     <ion-item>
-      <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
+
       <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
 
       <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">Obrigatorio</ion-note>
       <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('password')">Senha invalida</ion-note>
-      
+
     </ion-item>
 
 
 
-    <ion-button expand="block" type="submit" [disabled]="authForm.invalid">Login</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="authForm.invalid">{{ configs.action }}</ion-button>
  </form>
-  <ion-button expand="block" fill="clear">Criar conta</ion-button>
-  <ion-button expand="block">
-    <ion-icon name="logo-facebook" slot="start">
-      logar com fabook
-    </ion-icon>
-  </ion-button>
+  <ion-button expand="block" fill="clear" (click)="changeAuthAction()" class="changedAction">{{ configs.actionChange }}</ion-button>
 </ion-content>
